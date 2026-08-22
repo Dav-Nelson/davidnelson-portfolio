@@ -11,22 +11,16 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
 
 const otherProjects = [
   {
-    title: "Project Two",
-    description: "One-line description of what this project does and the problem it solves.",
-    tags: ["Next.js", "TypeScript"],
-    link: "#",
+    title: "Nel VetVault",
+    description: "Community-driven EdTech platform for the Faculty of Veterinary Medicine, University of Jos — a hub for past questions, clinical notes, and study materials, built on the philosophy that students are contributors, not just consumers.",
+    tags: ["React", "Supabase", "Tailwind CSS"],
+    link: "https://github.com/Dav-Nelson/nelvetvault",
   },
   {
-    title: "Project Three",
-    description: "One-line description of what this project does and the problem it solves.",
-    tags: ["Python", "AI/ML"],
-    link: "#",
-  },
-  {
-    title: "Project Four",
-    description: "One-line description of what this project does and the problem it solves.",
-    tags: ["React", "Node.js"],
-    link: "#",
+    title: "ShopNaija",
+    description: "Full-stack e-commerce store with product browsing, JWT-based auth, and a Postgres-backed order system — built on the PERN stack.",
+    tags: ["React", "Express", "PostgreSQL"],
+    link: "https://github.com/Dav-Nelson/ecommerce-store",
   },
 ];
 
@@ -36,9 +30,11 @@ export default function Home() {
       {/* HERO */}
       <section className="max-w-3xl mx-auto px-6 pt-24 pb-16">
         <div className="flex items-center gap-5">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 ring-2 ring-slate-700">
-            <User size={32} className="text-slate-500" />
-          </div>
+          <img
+            src="/headshot.jpg"
+            alt="David Nelson"
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover flex-shrink-0 ring-2 ring-slate-700"
+          />
           <div>
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
               David Nelson
@@ -57,7 +53,7 @@ export default function Home() {
             <SiGithub size={18} /> GitHub
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/david-nelson-352019371"
             target="_blank"
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"
           >
@@ -72,12 +68,12 @@ export default function Home() {
           About
         </h2>
         <p className="text-slate-400 leading-relaxed">
-          Placeholder about blurb — a couple sentences on your background,
-          what drew you to engineering, and what kind of problems you like
-          solving. This is a good place to mention your veterinary medicine
-          background if you want to frame it as part of your story (e.g. a
-          transition into software driven by a specific problem you wanted to
-          solve).
+          I build full-stack and AI-powered applications, from RAG pipelines and
+          voice AI systems to production web platforms. I care about shipping
+          things that work under real constraints: limited infrastructure, tight
+          deadlines, and messy real-world data. Currently focused on AI
+          integration and backend engineering, with a growing interest in
+          building tools that solve problems for underserved communities.
         </p>
       </section>
 
@@ -89,9 +85,14 @@ export default function Home() {
         <div className="border-l-4 border-blue-500 bg-slate-900 rounded-r-xl p-6 sm:p-8 hover:bg-slate-900/80 transition-colors">
           <h3 className="text-2xl font-bold">HealthBridge / Weha Health</h3>
           <p className="mt-3 text-slate-400 leading-relaxed">
-            Placeholder case study summary — problem, your role, the approach
-            you took, and the measurable outcome. Replace with your real
-            write-up.
+            Multilingual voice AI health assistant, built for a 43-team hackathon
+            — placed 1st. As team lead, I owned the backend, RAG pipeline,
+            security, and deployment: a FastAPI retrieval system over WHO and
+            country health documents, Groq-powered generation tuned for reliable
+            multilingual output, and a Dockerized deployment that survived two
+            infra migrations under real production constraints. Now evolving
+            into an early-stage startup, currently in market research and
+            business model validation.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {["Next.js", "TypeScript", "AI/ML", "Healthcare"].map((tag) => (
@@ -104,7 +105,8 @@ export default function Home() {
             ))}
           </div>
           <a
-            href="#"
+            href="https://github.com/Dav-Nelson/healthbridge-africa"
+            target="_blank"
             className="mt-5 inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-medium"
           >
             View case study <ArrowUpRight size={16} />
@@ -122,6 +124,7 @@ export default function Home() {
             <a
               key={project.title}
               href={project.link}
+              target="_blank"
               className="block bg-slate-900 rounded-xl p-5 hover:bg-slate-800 transition-colors"
             >
               <h3 className="font-semibold">{project.title}</h3>
