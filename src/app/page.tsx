@@ -1,4 +1,4 @@
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, Download, MapPin } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 
 function LinkedinIcon({ size = 18 }: { size?: number }) {
@@ -8,6 +8,95 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
     </svg>
   );
 }
+
+type Project = {
+  title: string;
+  badge: string;
+  role: string;
+  description: string[];
+  stats?: string[];
+  tags?: string[];
+  live?: string;
+  github?: string;
+};
+
+const wins = [
+  { title: "1st place", event: "The Build 2026 (NSK AI & TheUdaraProject)" },
+  {
+    title: "Masakhane Benchmark category",
+    event: "Sahara CodeSwitch Africa Challenge",
+  },
+  { title: "Most Innovative Use of AI", event: "GDG Abuja Build with AI" },
+  { title: "Pitch winner", event: "Techstars Startup Week Abuja" },
+];
+
+const featuredProjects: Project[] = [
+  {
+    title: "HealthBridge Africa",
+    badge: "1st place of 43 teams, The Build 2026",
+    role: "Team lead. Backend, RAG pipeline, security and deployment.",
+    description: [
+      "A voice-first multilingual health assistant that lets people speak or type health questions in their own language and get guidance grounded in WHO and national health guidelines for Nigeria, Ghana, Kenya and Ethiopia.",
+      "Built under tight infrastructure and cost limits. We tested different models and hosting setups and changed course more than once when something did not hold up.",
+    ],
+    stats: ["6 languages", "300+ visits", "4+ countries"],
+    tags: [
+      "React",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "RAG",
+      "Groq",
+      "Gemini Embeddings",
+      "Docker",
+    ],
+    live: "https://healthbridge-africa.vercel.app",
+    github: "https://github.com/Dav-Nelson/healthbridge-africa",
+  },
+  {
+    title: "Weha Health",
+    badge: "Masakhane Benchmark category winner",
+    role: "Backend and AI integration.",
+    description: [
+      "A voice triage agent for maternal health. It collects symptoms over a multi-turn conversation, checks them against WHO-aligned danger signs, and on an urgent result alerts a care team on WhatsApp and Telegram, finds the nearest facility and generates a shareable visit summary.",
+      "Evolved from HealthBridge Africa. The team also benchmarked four speech-to-text engines and published an open dataset. We are now validating the product with real users.",
+    ],
+    stats: ["5 languages", "4 speech engines tested", "150 audio samples"],
+    tags: [
+      "React",
+      "Node.js",
+      "FastAPI",
+      "pgvector",
+      "Twilio",
+      "Telegram API",
+      "OpenStreetMap",
+    ],
+    live: "https://weha-health-voice.vercel.app",
+    github: "https://github.com/Dav-Nelson/weha-health-voice",
+  },
+  {
+    title: "Dr. Yetunde Abioye Website",
+    badge: "Client project",
+    role: "Design, development and deployment.",
+    description: [
+      "A professional website for a public health doctor, live on a custom .com domain. It includes an admin dashboard for managing blog posts and speaking engagements, plus SEO metadata and structured data.",
+    ],
+    tags: ["React", "Vite", "Tailwind CSS", "Firebase", "Cloudinary"],
+    live: "https://yetundeabioye.com",
+    github: "https://github.com/Dav-Nelson/dr-yetunde-website",
+  },
+  {
+    title: "Lura",
+    badge: "Most Innovative Use of AI, GDG Abuja Build with AI",
+    role: "Co-built and pitched with a teammate.",
+    description: [
+      "A daily intelligence platform for Nigerian dropshippers. It monitors FX rates, competitor prices and supplier stock, then surfaces trending product opportunities with naira margin estimates in one morning digest.",
+    ],
+  },
+];
 
 const otherProjects = [
   {
@@ -26,23 +115,115 @@ const otherProjects = [
   },
 ];
 
-const healthbridgeTech = [
-  "Next.js",
-  "TypeScript",
-  "FastAPI",
-  "PostgreSQL",
-  "pgvector",
-  "RAG",
-  "Groq",
-  "Gemini Embeddings",
-  "Docker",
+const skills = [
+  {
+    group: "Frontend",
+    items: ["JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS"],
+  },
+  {
+    group: "Backend",
+    items: ["Node.js", "Express", "Python", "FastAPI", "REST APIs"],
+  },
+  {
+    group: "Data and AI",
+    items: ["PostgreSQL", "pgvector", "RAG", "LLM APIs", "Speech-to-text"],
+  },
+  {
+    group: "Tools",
+    items: ["Git", "GitHub Actions", "Docker", "Vercel", "Railway", "Firebase"],
+  },
 ];
+
+const EMAIL = "med.nelsonavid@gmail.com";
+const CV_PATH = "/David-Nelson-CV.pdf";
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">
+      {children}
+    </h2>
+  );
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <div className="border-l-4 border-blue-500 bg-slate-900 rounded-r-xl p-6 sm:p-8">
+      <div className="flex flex-wrap items-center gap-3">
+        <h3 className="text-2xl font-bold">{project.title}</h3>
+        <span className="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400">
+          {project.badge}
+        </span>
+      </div>
+
+      <p className="mt-2 text-sm text-slate-500">{project.role}</p>
+
+      <div className="mt-4 space-y-3 text-slate-400 leading-relaxed">
+        {project.description.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+
+      {project.stats && (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.stats.map((stat) => (
+            <span
+              key={stat}
+              className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400"
+            >
+              {stat}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {project.tags && (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {(project.live || project.github) && (
+        <div className="mt-6 flex flex-wrap gap-5">
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-medium"
+            >
+              Live demo
+              <ArrowUpRight size={16} />
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-slate-300 hover:text-white font-medium"
+            >
+              Source code
+              <ArrowUpRight size={16} />
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       {/* HERO */}
-      <section className="max-w-3xl mx-auto px-6 pt-24 pb-16">
+      <section className="max-w-3xl mx-auto px-6 pt-20 pb-12">
         <div className="flex items-center gap-5">
           <img
             src="/headshot.jpg"
@@ -56,12 +237,35 @@ export default function Home() {
             </h1>
 
             <p className="mt-2 text-lg sm:text-xl text-slate-400">
-              Full stack and AI engineer. I build and ship web and AI products.
+              Full stack and AI engineer building voice-first AI products and
+              web platforms.
+            </p>
+
+            <p className="mt-2 flex items-center gap-1.5 text-sm text-slate-500">
+              <MapPin size={14} />
+              Abuja, Nigeria · Open to remote roles
             </p>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-4">
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href={CV_PATH}
+            download
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors font-medium"
+          >
+            <Download size={18} />
+            Download CV
+          </a>
+
+          <a
+            href={`mailto:${EMAIL}`}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"
+          >
+            <Mail size={18} />
+            Email
+          </a>
+
           <a
             href="https://github.com/Dav-Nelson"
             target="_blank"
@@ -84,15 +288,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WINS */}
+      <section className="max-w-3xl mx-auto px-6 pb-16">
+        <SectionTitle>Wins in 2026</SectionTitle>
+
+        <div className="grid sm:grid-cols-2 gap-3">
+          {wins.map((win) => (
+            <div key={win.event} className="bg-slate-900 rounded-xl p-4">
+              <p className="font-semibold text-slate-100">{win.title}</p>
+              <p className="mt-1 text-sm text-slate-400">{win.event}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ABOUT */}
-      <section className="max-w-3xl mx-auto px-6 pb-20">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">
-          About
-        </h2>
+      <section className="max-w-3xl mx-auto px-6 pb-16">
+        <SectionTitle>About</SectionTitle>
 
         <div className="space-y-4 text-slate-400 leading-relaxed">
           <p>
-            I studied veterinary medicine before moving into software
+            I studied veterinary medicine, graduating with a First Class
+            degree from the University of Jos, before moving into software
             engineering. I build full stack and AI powered applications, and
             I have experience taking a product from an early idea through to
             something people can actually use.
@@ -101,25 +318,16 @@ export default function Home() {
           <p>
             Lately my work has centered on backend systems, AI integration,
             and retrieval augmented generation, usually applied to problems
-            with real users on the other end.
-          </p>
-
-          <p>
-            My team and I won first place among 43 teams at The Build 2026
-            with HealthBridge Africa, a multilingual voice AI health
-            assistant. We are now taking that project further as{" "}
-            <span className="text-slate-200 font-medium">Weha Health</span>,
-            currently validating the product and business model with real
-            users before we rebuild around what we learn.
+            with real users on the other end. I work well in distributed
+            teams: my hackathon teams have spanned Nigeria, Ghana and
+            Ethiopia.
           </p>
         </div>
       </section>
 
       {/* WHAT I BUILD */}
-      <section className="max-w-3xl mx-auto px-6 pb-20">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">
-          What I Build
-        </h2>
+      <section className="max-w-3xl mx-auto px-6 pb-16">
+        <SectionTitle>What I Build</SectionTitle>
 
         <div className="grid sm:grid-cols-3 gap-4">
           <div className="bg-slate-900 rounded-xl p-5">
@@ -148,84 +356,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURED PROJECT */}
-      <section className="max-w-3xl mx-auto px-6 pb-20">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">
-          Featured Work
-        </h2>
+      {/* FEATURED WORK */}
+      <section className="max-w-3xl mx-auto px-6 pb-16">
+        <SectionTitle>Featured Work</SectionTitle>
 
-        <div className="border-l-4 border-blue-500 bg-slate-900 rounded-r-xl p-6 sm:p-8">
-          <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-2xl font-bold">Weha Health</h3>
-
-            <span className="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400">
-              Early stage startup
-            </span>
-          </div>
-
-          <p className="mt-2 text-sm text-slate-500">
-            Originally built as HealthBridge Africa
-          </p>
-
-          <p className="mt-5 text-slate-400 leading-relaxed">
-            Weha Health started as HealthBridge Africa, a multilingual voice
-            AI health assistant built during The Build 2026, a hackathon
-            where my team placed first among 43 teams.
-          </p>
-
-          <p className="mt-4 text-slate-400 leading-relaxed">
-            As team lead, I owned the backend, the retrieval pipeline,
-            security, and deployment. The system runs on a React and Next.js
-            frontend, a Node.js gateway, and a FastAPI service handling
-            retrieval and generation, backed by PostgreSQL with pgvector,
-            Gemini embeddings, and Llama 3.3 70B through Groq.
-          </p>
-
-          <p className="mt-4 text-slate-400 leading-relaxed">
-            Getting it working meant making real engineering tradeoffs
-            around limited infrastructure, memory constraints, multilingual
-            output, and cost. We tested different models and hosting setups
-            and changed course more than once when something did not hold up
-            under our constraints.
-          </p>
-
-          <p className="mt-4 text-slate-400 leading-relaxed">
-            We are now building on that work as Weha Health. Instead of
-            treating the hackathon version as finished, the team is
-            currently talking to users and testing the business model before
-            deciding how to rebuild it properly.
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {healthbridgeTech.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-4">
-            <a
-              href="https://github.com/Dav-Nelson/healthbridge-africa"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 font-medium"
-            >
-              View the project
-              <ArrowUpRight size={16} />
-            </a>
-          </div>
+        <div className="space-y-6">
+          {featuredProjects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
         </div>
       </section>
 
       {/* OTHER WORK */}
-      <section className="max-w-3xl mx-auto px-6 pb-20">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">
-          Other Work
-        </h2>
+      <section className="max-w-3xl mx-auto px-6 pb-16">
+        <SectionTitle>Other Work</SectionTitle>
 
         <div className="grid sm:grid-cols-2 gap-4">
           {otherProjects.map((project) => (
@@ -263,17 +407,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CURRENTLY */}
-      <section className="max-w-3xl mx-auto px-6 pb-20">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">
-          Currently
-        </h2>
+      {/* SKILLS */}
+      <section className="max-w-3xl mx-auto px-6 pb-16">
+        <SectionTitle>Skills</SectionTitle>
 
-        <div className="bg-slate-900 rounded-xl p-6">
-          <p className="text-slate-400 leading-relaxed">
-            Open to software engineering roles, contract work, and products
-            worth building.
-          </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {skills.map((skill) => (
+            <div key={skill.group} className="bg-slate-900 rounded-xl p-5">
+              <h3 className="font-semibold">{skill.group}</h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {skill.items.map((item) => (
+                  <span
+                    key={item}
+                    className="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -282,17 +435,28 @@ export default function Home() {
         <h2 className="text-2xl font-bold">Have a project or opportunity?</h2>
 
         <p className="mt-2 text-slate-400">
-          I am open to software engineering roles, contract work, and
-          problems worth solving.
+          I am open to remote software engineering roles, contract work, and
+          problems worth solving. Available to start immediately.
         </p>
 
-        <a
-          href="mailto:med.nelsonavid@gmail.com"
-          className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors font-medium"
-        >
-          <Mail size={18} />
-          Get in touch
-        </a>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <a
+            href={`mailto:${EMAIL}`}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors font-medium"
+          >
+            <Mail size={18} />
+            Get in touch
+          </a>
+
+          <a
+            href={CV_PATH}
+            download
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors font-medium"
+          >
+            <Download size={18} />
+            Download CV
+          </a>
+        </div>
       </section>
     </main>
   );
