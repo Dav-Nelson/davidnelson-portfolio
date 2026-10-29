@@ -78,11 +78,11 @@ const featuredProjects: Project[] = [
     github: "https://github.com/Dav-Nelson/weha-health-voice",
   },
   {
-    title: "Dr. Yetunde Abioye Website",
+    title: "Public Health Professional Website",
     badge: "Client project",
     role: "Design, development and deployment.",
     description: [
-      "A professional website for a public health doctor, live on a custom .com domain. It includes an admin dashboard for managing blog posts and speaking engagements, plus SEO metadata and structured data.",
+      "A professional website for a veterinary doctor, live on a custom .com domain. It includes an admin dashboard for managing blog posts and speaking engagements, plus SEO metadata and structured data.",
     ],
     tags: ["React", "Vite", "Tailwind CSS", "Firebase", "Cloudinary"],
     live: "https://yetundeabioye.com",
